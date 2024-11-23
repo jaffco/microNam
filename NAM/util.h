@@ -3,7 +3,7 @@
 // Utilities
 
 #include <string>
-#include <Eigen/Dense> // Eigen::MatrixXf
+#include "../Dependencies/eigen/Eigen/Dense"
 
 namespace nam
 {

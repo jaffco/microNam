@@ -2,7 +2,7 @@
 #include <iostream>
 #include <math.h>
 
-#include <Eigen/Dense>
+#include "../Dependencies/eigen/Eigen/Dense"
 
 #include "wavenet.h"
 

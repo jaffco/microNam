@@ -3,8 +3,8 @@
 #include <string>
 #include <vector>
 
-#include "json.hpp"
-#include <Eigen/Dense>
+#include "../Dependencies/nlohmann/json.hpp"
+#include "../Dependencies/eigen/Eigen/Dense"
 
 #include "dsp.h"
 

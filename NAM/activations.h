@@ -3,7 +3,7 @@
 #include <string>
 #include <cmath> // expf
 #include <unordered_map>
-#include <Eigen/Dense>
+#include "../Dependencies/eigen/Eigen/Dense"
 
 namespace nam
 {

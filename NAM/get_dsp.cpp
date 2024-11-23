@@ -4,7 +4,7 @@
 #include <unordered_set>
 
 #include "dsp.h"
-#include "json.hpp"
+#include "../Dependencies/nlohmann/json.hpp"
 #include "lstm.h"
 #include "convnet.h"
 #include "wavenet.h"

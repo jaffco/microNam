@@ -4,7 +4,7 @@
 #include <map>
 #include <vector>
 
-#include <Eigen/Dense>
+#include "../Dependencies/eigen/Eigen/Dense"
 
 #include "dsp.h"
 

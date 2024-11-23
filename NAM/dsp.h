@@ -7,10 +7,10 @@
 #include <unordered_map>
 #include <vector>
 
-#include <Eigen/Dense>
+#include "../Dependencies/eigen/Eigen/Dense"
 
 #include "activations.h"
-#include "json.hpp"
+#include "../Dependencies/nlohmann/json.hpp"
 
 #ifdef NAM_SAMPLE_FLOAT
   #define NAM_SAMPLE float
