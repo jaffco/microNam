@@ -10,10 +10,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED OFF)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Compiler optimization flags
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -std=c++20 -Os -ffunction-sections -fdata-sections")
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -std=c++20 -Os -ffunction-sections -fdata-sections -flto -fno-rtti")
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-exceptions") # causes compile errors
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti") # minimal gains... idk if it hurts performance 
 
 # linker flags
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -flto")
