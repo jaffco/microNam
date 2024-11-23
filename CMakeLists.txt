@@ -11,11 +11,15 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Compiler optimization flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -std=c++20 -Os -ffunction-sections -fdata-sections")
-# set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --gc-sections")
 
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-exceptions") # causes compile errors
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti") # minimal gains... idk if it hurts performance 
+
+# linker flags
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -flto")
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     include_directories(SYSTEM /usr/local/include)
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-dead_strip")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-dead_strip") # this is the moneymaker 
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --gc-sections")
     link_libraries(stdc++fs)
