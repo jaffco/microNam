@@ -132,7 +132,8 @@ void nam::wavenet::_LayerArray::set_num_frames_(const long num_frames)
     ss << "Asked to accept a buffer of " << num_frames << " samples, but the buffer is too short ("
        << LAYER_ARRAY_BUFFER_SIZE << ") to get out of the recptive field (" << this->_get_receptive_field()
        << "); copy errors could occur!\n";
-    throw std::runtime_error(ss.str().c_str());
+    // TODO
+    // throw std::runtime_error(ss.str().c_str());
   }
   for (size_t i = 0; i < this->_layers.size(); i++)
     this->_layers[i].set_num_frames_(num_frames);
@@ -243,7 +244,8 @@ nam::wavenet::WaveNet::WaveNet(const std::vector<nam::wavenet::LayerArrayParams>
 , _head_scale(head_scale)
 {
   if (with_head)
-    throw std::runtime_error("Head not implemented!");
+    // TODO
+    // throw std::runtime_error("Head not implemented!");
   for (size_t i = 0; i < layer_array_params.size(); i++)
   {
     this->_layer_arrays.push_back(nam::wavenet::_LayerArray(
@@ -259,7 +261,8 @@ nam::wavenet::WaveNet::WaveNet(const std::vector<nam::wavenet::LayerArrayParams>
         std::stringstream ss;
         ss << "channels of layer " << i << " (" << layer_array_params[i].channels
            << ") doesn't match head_size of preceding layer (" << layer_array_params[i - 1].head_size << "!\n";
-        throw std::runtime_error(ss.str().c_str());
+        // TODO
+        // throw std::runtime_error(ss.str().c_str());
       }
     this->_head_arrays.push_back(Eigen::MatrixXf(layer_array_params[i].head_size, 0));
   }
@@ -285,10 +288,12 @@ void nam::wavenet::WaveNet::set_weights_(std::vector<float>& weights)
       if (weights[i] == *it)
       {
         ss << "Weight mismatch: assigned " << i + 1 << " weights, but " << weights.size() << " were provided.";
-        throw std::runtime_error(ss.str().c_str());
+        // TODO
+        // throw std::runtime_error(ss.str().c_str());
       }
     ss << "Weight mismatch: provided " << weights.size() << " weights, but the model expects more.";
-    throw std::runtime_error(ss.str().c_str());
+    // TODO
+    // throw std::runtime_error(ss.str().c_str());
   }
 }
 

@@ -1,7 +1,7 @@
 #include <algorithm> // std::max_element
 #include <algorithm>
 #include <cmath> // pow, tanh, expf
-#include <filesystem>
+//#include <filesystem>
 #include <fstream>
 #include <string>
 #include <unordered_map>
@@ -55,7 +55,8 @@ double nam::DSP::GetLoudness() const
 {
   if (!HasLoudness())
   {
-    throw std::runtime_error("Asked for loudness of a model that doesn't know how loud it is!");
+    // TODO
+    //throw std::runtime_error("Asked for loudness of a model that doesn't know how loud it is!");
   }
   return mLoudness;
 }
@@ -157,9 +158,10 @@ nam::Linear::Linear(const int receptive_field, const bool _bias, const std::vect
 : nam::Buffer(receptive_field, expected_sample_rate)
 {
   if ((int)weights.size() != (receptive_field + (_bias ? 1 : 0)))
-    throw std::runtime_error(
-      "Params vector does not match expected size based "
-      "on architecture parameters");
+    // TODO
+    // throw std::runtime_error(
+    //   "Params vector does not match expected size based "
+    //   "on architecture parameters");
 
   this->_weight.resize(this->_receptive_field);
   // Pass in in reverse order so that dot products work out of the box.

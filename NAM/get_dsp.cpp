@@ -1,6 +1,6 @@
 #include <fstream>
 #include <sstream>
-#include <stdexcept>
+// #include <stdexcept>
 #include <unordered_set>
 
 #include "dsp.h"
@@ -30,25 +30,29 @@ Version ParseVersion(const std::string& versionStr)
   std::getline(ss, patchStr);
 
   // Parse the components as integers and assign them to the version struct
-  try
+  // TODO
+  // try
   {
     version.major = std::stoi(majorStr);
     version.minor = std::stoi(minorStr);
     version.patch = std::stoi(patchStr);
   }
-  catch (const std::invalid_argument&)
-  {
-    throw std::invalid_argument("Invalid version string: " + versionStr);
-  }
-  catch (const std::out_of_range&)
-  {
-    throw std::out_of_range("Version string out of range: " + versionStr);
-  }
+  // catch (const std::invalid_argument&)
+  // {
+  //   // TODO
+  //   // throw std::invalid_argument("Invalid version string: " + versionStr);
+  // }
+  // catch (const std::out_of_range&)
+  // {
+  //   // TODO
+  //   // throw std::out_of_range("Version string out of range: " + versionStr);
+  // }
 
   // Validate the semver components
   if (version.major < 0 || version.minor < 0 || version.patch < 0)
   {
-    throw std::invalid_argument("Negative version component: " + versionStr);
+    // TODO
+    // throw std::invalid_argument("Negative version component: " + versionStr);
   }
   return version;
 }
@@ -62,7 +66,8 @@ void verify_config_version(const std::string versionStr)
     ss << "Model config is an unsupported version " << versionStr
        << ". Try either converting the model to a more recent version, or "
           "update your version of the NAM plugin.";
-    throw std::runtime_error(ss.str());
+    // TODO
+    //throw std::runtime_error(ss.str());
   }
 }
 
@@ -74,50 +79,51 @@ std::vector<float> GetWeights(nlohmann::json const& j)
     return *it;
   }
   else
-    throw std::runtime_error("Corrupted model file is missing weights.");
+    //throw std::runtime_error("Corrupted model file is missing weights.");
+    return *it;
 }
 
-std::unique_ptr<DSP> get_dsp(const std::filesystem::path config_filename)
-{
-  dspData temp;
-  return get_dsp(config_filename, temp);
-}
+// std::unique_ptr<DSP> get_dsp(const std::filesystem::path config_filename)
+// {
+//   dspData temp;
+//   return get_dsp(config_filename, temp);
+// }
 
-std::unique_ptr<DSP> get_dsp(const std::filesystem::path config_filename, dspData& returnedConfig)
-{
-  if (!std::filesystem::exists(config_filename))
-    throw std::runtime_error("Config file doesn't exist!\n");
-  std::ifstream i(config_filename);
-  nlohmann::json j;
-  i >> j;
-  verify_config_version(j["version"]);
+// std::unique_ptr<DSP> get_dsp(const std::filesystem::path config_filename, dspData& returnedConfig)
+// {
+//   if (!std::filesystem::exists(config_filename))
+//     throw std::runtime_error("Config file doesn't exist!\n");
+//   std::ifstream i(config_filename);
+//   nlohmann::json j;
+//   i >> j;
+//   verify_config_version(j["version"]);
 
-  auto architecture = j["architecture"];
-  nlohmann::json config = j["config"];
-  std::vector<float> weights = GetWeights(j);
+//   auto architecture = j["architecture"];
+//   nlohmann::json config = j["config"];
+//   std::vector<float> weights = GetWeights(j);
 
-  // Assign values to returnedConfig
-  returnedConfig.version = j["version"];
-  returnedConfig.architecture = j["architecture"];
-  returnedConfig.config = j["config"];
-  returnedConfig.metadata = j["metadata"];
-  returnedConfig.weights = weights;
-  if (j.find("sample_rate") != j.end())
-    returnedConfig.expected_sample_rate = j["sample_rate"];
-  else
-  {
-    returnedConfig.expected_sample_rate = -1.0;
-  }
+//   // Assign values to returnedConfig
+//   returnedConfig.version = j["version"];
+//   returnedConfig.architecture = j["architecture"];
+//   returnedConfig.config = j["config"];
+//   returnedConfig.metadata = j["metadata"];
+//   returnedConfig.weights = weights;
+//   if (j.find("sample_rate") != j.end())
+//     returnedConfig.expected_sample_rate = j["sample_rate"];
+//   else
+//   {
+//     returnedConfig.expected_sample_rate = -1.0;
+//   }
 
 
-  /*Copy to a new dsp_config object for get_dsp below,
-   since not sure if weights actually get modified as being non-const references on some
-   model constructors inside get_dsp(dsp_config& conf).
-   We need to return unmodified version of dsp_config via returnedConfig.*/
-  dspData conf = returnedConfig;
+//   /*Copy to a new dsp_config object for get_dsp below,
+//    since not sure if weights actually get modified as being non-const references on some
+//    model constructors inside get_dsp(dsp_config& conf).
+//    We need to return unmodified version of dsp_config via returnedConfig.*/
+//   dspData conf = returnedConfig;
 
-  return get_dsp(conf);
-}
+//   return get_dsp(conf);
+// }
 
 struct OptionalValue
 {
@@ -192,7 +198,8 @@ std::unique_ptr<DSP> get_dsp(dspData& conf)
   }
   else
   {
-    throw std::runtime_error("Unrecognized architecture");
+    // TODO
+    //throw std::runtime_error("Unrecognized architecture");
   }
   if (loudness.have)
   {

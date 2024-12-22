@@ -1,7 +1,7 @@
 #include <algorithm> // std::max_element
 #include <algorithm>
 #include <cmath> // pow, tanh, expf
-#include <filesystem>
+//#include <filesystem>
 #include <fstream>
 #include <string>
 #include <unordered_map>
@@ -106,8 +106,8 @@ nam::convnet::ConvNet::ConvNet(const int channels, const std::vector<int>& dilat
     matrix.setZero();
   std::fill(this->_input_buffer.begin(), this->_input_buffer.end(), 0.0f);
   this->_head = _Head(channels, it);
-  if (it != weights.end())
-    throw std::runtime_error("Didn't touch all the weights when initializing ConvNet");
+  // if (it != weights.end())
+  //   throw std::runtime_error("Didn't touch all the weights when initializing ConvNet");
 
   mPrewarmSamples = 1;
   for (size_t i = 0; i < dilations.size(); i++)
